@@ -6,14 +6,14 @@ namespace ariel
 {
     // Check validation!!
     Character::Character(const std::string& name, const Point& location, int healthPoints) : 
-                        name(name), location(location), healthPoints(healthPoints) 
+                        _name(name), _location(location), _healthPoints(healthPoints) 
     {
         // this->location = location;
         // this->healthPoints = healthPoints;
         // this->name = name;
     }
 
-    bool Character::isAlive() const { return healthPoints > 0; }
+    bool Character::isAlive() const { return _healthPoints > 0; }
 
     double Character::distance(const Character* other) const 
     {
@@ -21,22 +21,22 @@ namespace ariel
         {
             return NULL;
         } 
-        return location.distance(other->getLocation()); 
+        return _location.distance(other->getLocation()); 
     }
 
-    void Character::hit(int damage) { healthPoints -= damage; }
+    void Character::hit(int damage) { _healthPoints -= damage; }
 
-    string Character::getName() const { return name; }
+    string Character::getName() const { return _name; }
 
-    Point Character::getLocation() const { return location; }
+    Point Character::getLocation() const { return _location; }
 
     void Character::print() const
     {
-        cout << name << ": ";
+        cout << _name << ": ";
         if (isAlive()) 
         {
-            cout << "HP: " << healthPoints << ", Location: ";
-            location.print();
+            cout << "HP: " << _healthPoints << ", Location: ";
+            _location.print();
         } 
         else 
         {
@@ -47,47 +47,47 @@ namespace ariel
 
 
     Cowboy::Cowboy(const string& name, const Point& location) 
-                : Character(name, location, 110) , bullets(6) {}
+                : Character(name, location, 110) , _bullets(6) {}
 
     void Cowboy::shoot(Character* enemy) 
     {
-        if (enemy->isAlive() && bullets > 0) 
+        if (enemy->isAlive() && _bullets > 0) 
         {
             enemy->hit(10);
-            bullets--;
+            _bullets--;
         }
     }
 
-    bool Cowboy::hasBullets() const { return bullets > 0; }
+    bool Cowboy::hasBullets() const { return _bullets > 0; }
 
-    void Cowboy::reload()  { bullets = 6; }
+    void Cowboy::reload()  { _bullets = 6; }
 
     void Cowboy::print() const
     {
         cout << "C - ";
         Character::print();
-        cout << ", Bullets: " << bullets << endl;
+        cout << ", Bullets: " << _bullets << endl;
     }
 
 
     
     Ninja::Ninja(const std::string& name, const Point& location, int healthPoints , int speed) 
-                : Character(name, location, healthPoints), speed(speed) {}
+                : Character(name, location, healthPoints), _speed(speed) {}
 
     void Ninja::move(Character* enemy) 
     {
         if (isAlive()) 
         {
             Point enemyLocation = enemy->getLocation();
-            double dist = location.distance(enemyLocation);
-            if (dist > speed) 
+            double dist = _location.distance(enemyLocation);
+            if (dist > _speed) 
             {
-                double dx = enemyLocation.getX() - location.getX();
-                double dy = enemyLocation.getY() - location.getY();
-                double ratio = speed / dist;
-                double newX = location.getX() + dx * ratio;
-                double newY = location.getY() + dy * ratio;
-                location = Point(newX, newY);
+                double dx = enemyLocation.get_x() - _location.get_x();
+                double dy = enemyLocation.get_y() - _location.get_y();
+                double ratio = _speed / dist;
+                double newX = _location.get_x() + dx * ratio;
+                double newY = _location.get_y() + dy * ratio;
+                _location = Point(newX, newY);
             }
         }
     }
@@ -104,7 +104,7 @@ namespace ariel
     {
         cout << "N - ";
         Character::print();
-        std::cout << ", Speed: " << speed << std::endl;
+        std::cout << ", Speed: " << _speed << std::endl;
     }
 
 

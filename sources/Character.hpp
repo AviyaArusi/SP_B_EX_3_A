@@ -11,10 +11,10 @@ namespace ariel
 
     class Character
     {
-        private:
-            Point location;
-            int healthPoints;
-            std::string name;
+        protected:
+            Point _location;
+            int _healthPoints;
+            std::string _name;
 
         public:
             Character (const std::string&, const Point&, int);
@@ -30,7 +30,7 @@ namespace ariel
     class Cowboy : public Character 
     {
     private:
-        int bullets;
+        int _bullets;
 
     public:
         Cowboy(const std::string&, const Point&);
@@ -43,8 +43,8 @@ namespace ariel
 
     class Ninja : public Character 
     {
-    private:
-        int speed;
+    protected:
+        int _speed;
 
     public:
         Ninja(const std::string&, const Point&, int, int);
