@@ -4,7 +4,7 @@ using namespace std;
 
 namespace ariel
 {
-
+    // Check validation!!
     Character::Character(Point& location, int healthPoints, string name) : location(location) 
     {
         // this->location = location;
@@ -14,7 +14,15 @@ namespace ariel
 
     bool Character::isAlive() const { return healthPoints > 0; }
 
-    double Character::distance(Character* other) const { return location.distance(other->getLocation()); }
+    double Character::distance(Character* other) const 
+    {
+        Point otherPoint;
+        if(other != NULL)
+        {
+            otherPoint = other->getLocation();
+        } 
+        return location.distance(otherPoint); 
+    }
 
     void Character::hit(int damage) { healthPoints -= damage; }
 
@@ -38,7 +46,7 @@ namespace ariel
 
 
 
-    Cowboy::Cowboy(Point location, std::string name) : Character(location, 110, name) 
+    Cowboy::Cowboy(Point& location, string name) : Character(location, 110, name) 
     {
         bullets = 6;
     }
@@ -56,7 +64,7 @@ namespace ariel
 
     void Cowboy::reload()  { bullets = 6; }
 
-    void Cowboy::print() 
+    void Cowboy::print() const 
     {
         std::cout << "C - ";
         Character::print();
@@ -70,7 +78,7 @@ namespace ariel
         int speed;
 
     public:
-        Ninja(Point location, int healthPoints, std::string name, int speed) : Character(location, healthPoints, name) {
+        Ninja(Point& location, int healthPoints, string name, int speed) : Character(location, healthPoints, name) {
             this->speed = speed;
         }
 
@@ -89,15 +97,17 @@ namespace ariel
             }
         }
 
-        void slash(Character* enemy) {
-            if (isAlive() && distance(enemy) < 1.0) {
+        void slash(Character* enemy) 
+        {
+            if (isAlive() && distance(enemy) < 1.0) 
+            {
                 enemy->hit(40);
             }
         }
 
-        void print() 
+        void print() const
         {
-            std::cout << "N - ";
+            cout << "N - ";
             Character::print();
             std::cout << ", Speed: " << speed << std::endl;
         }

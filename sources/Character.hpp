@@ -15,11 +15,11 @@ namespace ariel
             string name;
 
         public:
-            Character(Point&, int, std::string&);
+            Character(Point&, int, std::string);
             string getName() const;
             Point getLocation() const;
             bool isAlive() const;
-            double distance(Character&) const;
+            double distance(Character*) const;
             void hit(int);
             void print();
     };
@@ -31,11 +31,11 @@ namespace ariel
         int bullets;
 
     public:
-        Cowboy(Point, std::string);
+        Cowboy(Point&, std::string);
         void shoot(Character*);
         bool hasBullets();
         void reload(); 
-        void print();
+        void print() const;
     };
 
 
@@ -45,10 +45,10 @@ namespace ariel
         int speed;
 
     public:
-        Ninja(Point, int, std::string, int);
+        Ninja(Point&, int, std::string, int);
         void move(Character*);
         void slash(Character*);
-        void print();
+        void print() const;
     };
 
 
