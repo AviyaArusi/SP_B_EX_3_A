@@ -8,7 +8,6 @@ namespace ariel
 
     class Point
     {
-
         private:
             double _x;
             double _y;
@@ -18,15 +17,9 @@ namespace ariel
             // Point(Point&);
             int get_x() const;
             int get_y() const;
-            double distance(Point &other) const;
-            void print();
-            friend void moveTowards(Point&, Point&, int);
-
-
-
-
-
-
+            double distance(const Point& other) const;
+            void print() const;
+            friend Point moveTowards(const Point&, const Point&, int);
 
     };
 

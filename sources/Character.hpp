@@ -1,7 +1,9 @@
 #pragma once
 
 #include <iostream>
-#include <math.h>
+// #include <math.h>
+#include <cmath>
+#include <string>
 #include "Point.hpp"
 
 namespace ariel
@@ -10,18 +12,18 @@ namespace ariel
     class Character
     {
         private:
-            Point& location;
+            Point location;
             int healthPoints;
-            string name;
+            std::string name;
 
         public:
-            Character(Point&, int, std::string);
-            string getName() const;
+            Character (const std::string&, const Point&, int);
+            std::string getName() const;
             Point getLocation() const;
             bool isAlive() const;
-            double distance(Character*) const;
+            double distance(const Character*) const;
             void hit(int);
-            void print();
+            virtual void print() const = 0; // Pure virtual function
     };
 
 
@@ -31,11 +33,11 @@ namespace ariel
         int bullets;
 
     public:
-        Cowboy(Point&, std::string);
+        Cowboy(const std::string&, const Point&);
         void shoot(Character*);
-        bool hasBullets();
+        bool hasBullets() const;
         void reload(); 
-        void print() const;
+        void print() const override;
     };
 
 
@@ -45,10 +47,29 @@ namespace ariel
         int speed;
 
     public:
-        Ninja(Point&, int, std::string, int);
+        Ninja(const std::string&, const Point&, int, int);
         void move(Character*);
         void slash(Character*);
-        void print() const;
+        void print() const override;
+    };
+
+
+    class YoungNinja : public Ninja 
+    {
+    public:
+        YoungNinja(const std::string& name, const Point& location);
+    };
+
+    class TrainedNinja : public Ninja 
+    {
+    public:
+        TrainedNinja(const std::string& name, const Point& location);
+    };
+
+    class OldNinja : public Ninja 
+    {
+    public:
+        OldNinja(const std::string& name, const Point& location);
     };
 
 

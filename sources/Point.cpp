@@ -13,15 +13,15 @@ namespace ariel
     int Point::get_x() const { return _x;}
     int Point::get_y() const { return _y;}
 
-    double Point::distance(Point &other) const
+    double Point::distance(const Point &other) const
     {
         double ans = sqrt( pow( (other.get_x() -_x) , 2) + pow( (other.get_y()-_y) , 2) );
         return ans;
     }
 
-    void Point::print() { cout << "(" << _x << ", " << _y << ")" << endl; }
+    void Point::print() const { cout << "(" << _x << ", " << _y << ")" << endl; }
     
-    Point moveTowards(Point source, Point destination, double distance) 
+    Point moveTowards(const Point& source, const Point& destination, double distance)
     {   
         double dx = destination.get_x() - source.get_x();
         double dy = destination.get_y() - source.get_y();
