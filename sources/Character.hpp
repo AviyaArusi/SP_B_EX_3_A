@@ -1,7 +1,6 @@
 #pragma once
 
 #include <iostream>
-// #include <math.h>
 #include <cmath>
 #include <string>
 #include "Point.hpp"
@@ -11,19 +10,27 @@ namespace ariel
 
     class Character
     {
-        protected:
+        private:
             Point _location;
             int _healthPoints;
             std::string _name;
 
         public:
             Character (const std::string&, const Point&, int);
+            
+            Character(Character&);
+            Character(Character&&) noexcept;
+            Character& operator=(const Character&);
+            Character& operator=(Character&&) noexcept;
+            virtual ~Character() = default;
+
             std::string getName() const;
             Point getLocation() const;
+            int getHealth() const;
             bool isAlive() const;
             double distance(const Character*) const;
             void hit(int);
-            virtual void print() const = 0; // Pure virtual function
+            virtual std::string print() const = 0; // Pure virtual function
     };
 
 
@@ -37,20 +44,21 @@ namespace ariel
         void shoot(Character*);
         bool hasBullets() const;
         void reload(); 
-        void print() const override;
+        std::string print() const override;
     };
 
 
     class Ninja : public Character 
     {
-    protected:
+    private:
         int _speed;
 
     public:
         Ninja(const std::string&, const Point&, int, int);
         void move(Character*);
         void slash(Character*);
-        void print() const override;
+        int getSpeed() const;
+        std::string print() const override;
     };
 
 

@@ -13,12 +13,16 @@ namespace ariel
             double _y;
 
         public:
-            Point(double x = 0, double y = 0);
+            // Point(double x, double y);
             // Point(Point&);
+            
+            Point();
+            Point(double, double);
+            
             int get_x() const;
             int get_y() const;
             double distance(const Point& other) const;
-            void print() const;
+            std::string print() const;
             friend Point moveTowards(const Point&, const Point&, int);
 
     };

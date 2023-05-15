@@ -5,118 +5,69 @@ using namespace std;
 namespace ariel
 {
     // Check validation!!
-    Character::Character(const std::string& name, const Point& location, int healthPoints) : 
-                        _name(name), _location(location), _healthPoints(healthPoints) 
-    {
-        // this->location = location;
-        // this->healthPoints = healthPoints;
-        // this->name = name;
-    }
+    Character::Character(const std::string& name, const Point& location, int healthPoints) 
+    : _name(name), _location(location), _healthPoints(healthPoints) {}
+
+    // Define copy constructor
+    Character::Character(Character& other) {}
+    // Define move constructor
+    Character::Character(Character&& other) noexcept {}
+    // Define copy assignment operator
+    Character &Character::operator=(const Character& other) { return (*this);}
+    // Define move assignment operator
+    Character &Character::operator=(Character&& other) noexcept { return (*this);}
+
 
     bool Character::isAlive() const { return _healthPoints > 0; }
 
-    double Character::distance(const Character* other) const 
-    {
-        if(other != NULL) // Check if throw exception
-        {
-            return NULL;
-        } 
-        return _location.distance(other->getLocation()); 
-    }
+    double Character::distance(const Character* other) const { return 0;}
 
     void Character::hit(int damage) { _healthPoints -= damage; }
 
     string Character::getName() const { return _name; }
 
     Point Character::getLocation() const { return _location; }
+                
+    int Character::getHealth() const { return 0;};
 
-    void Character::print() const
-    {
-        cout << _name << ": ";
-        if (isAlive()) 
-        {
-            cout << "HP: " << _healthPoints << ", Location: ";
-            _location.print();
-        } 
-        else 
-        {
-            cout << "(DEAD)" << endl;
-        }
-    }
+    string Character::print() const { return "";}
 
 
 
     Cowboy::Cowboy(const string& name, const Point& location) 
-                : Character(name, location, 110) , _bullets(6) {}
+    : Character(name, location, 110) , _bullets(6) {}
 
-    void Cowboy::shoot(Character* enemy) 
-    {
-        if (enemy->isAlive() && _bullets > 0) 
-        {
-            enemy->hit(10);
-            _bullets--;
-        }
-    }
+    void Cowboy::shoot(Character* enemy) {}
 
     bool Cowboy::hasBullets() const { return _bullets > 0; }
 
     void Cowboy::reload()  { _bullets = 6; }
 
-    void Cowboy::print() const
-    {
-        cout << "C - ";
-        Character::print();
-        cout << ", Bullets: " << _bullets << endl;
-    }
+    string Cowboy::print() const{ return "";}
 
 
     
     Ninja::Ninja(const std::string& name, const Point& location, int healthPoints , int speed) 
-                : Character(name, location, healthPoints), _speed(speed) {}
+    : Character(name, location, healthPoints), _speed(speed) {}
+    
+    int Ninja::getSpeed() const {return 0;};
 
-    void Ninja::move(Character* enemy) 
-    {
-        if (isAlive()) 
-        {
-            Point enemyLocation = enemy->getLocation();
-            double dist = _location.distance(enemyLocation);
-            if (dist > _speed) 
-            {
-                double dx = enemyLocation.get_x() - _location.get_x();
-                double dy = enemyLocation.get_y() - _location.get_y();
-                double ratio = _speed / dist;
-                double newX = _location.get_x() + dx * ratio;
-                double newY = _location.get_y() + dy * ratio;
-                _location = Point(newX, newY);
-            }
-        }
-    }
+    void Ninja::move(Character* enemy) {}
 
-    void Ninja::slash(Character* enemy) 
-    {
-        if (isAlive() && distance(enemy) < 1.0) 
-        {
-            enemy->hit(40);
-        }
-    }
+    void Ninja::slash(Character* enemy) {}
 
-    void Ninja::print() const
-    {
-        cout << "N - ";
-        Character::print();
-        std::cout << ", Speed: " << _speed << std::endl;
-    }
+    string Ninja::print() const { return "";}
 
 
     YoungNinja::YoungNinja(const std::string& name, const Point& location)
-                            : Ninja(name, location, 100, 14) {}
+    : Ninja(name, location, 100, 14) {}
 
 
     TrainedNinja::TrainedNinja(const std::string& name, const Point& location)
-                            : Ninja(name, location, 120, 12) {}
+    : Ninja(name, location, 120, 12) {}
 
 
     OldNinja::OldNinja(const std::string& name, const Point& location)
-                        : Ninja(name, location, 150, 8) {}
+    : Ninja(name, location, 150, 8) {}
 
 }
