@@ -13,9 +13,6 @@ namespace ariel
             double _y;
 
         public:
-            // Point(double x, double y);
-            // Point(Point&);
-            
             Point();
             Point(double, double);
             

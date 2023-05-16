@@ -18,6 +18,8 @@ namespace ariel
     Team::~Team() {}
 
     Character* Team::getLeader() const { return _leader;}
+    
+    vector<Character*> Team::getTeam() const { return _team;};
 
     void Team::add(Character* character) {}
 
@@ -28,50 +30,15 @@ namespace ariel
     string Team::print() const {return "";}
 
 
+
+
+
     Team2::Team2(Character* leader) : Team(leader) {}
-
-    // // Define copy constructor
-    // Team2::Team2(Team& other) {}
-    // // Define move constructor
-    // Team2::Team2(Team&& other) noexcept {}
-    // // Define copy assignment operator
-    // Team2 &Team2::operator=(const Team& other) { return (*this);}
-    // // Define move assignment operator
-    // Team2 &Team2::operator=(Team&& other) noexcept { return (*this);}
-
-    Team2::~Team2() {}
+    void Team2::add(Character* character) {}
 
 
-    void Team2::attack(Team* enemy) {}
-    
-    // void Team2::add(Character* character) {}
-
-    // int Team2::stillAlive() { return 0;}
-
-    // void Team2::print() {}
 
     SmartTeam::SmartTeam(Character* leader) : Team(leader) {}
-
-    // // Define copy constructor
-    // SmartTeam::SmartTeam(Team& other) {}
-    // // Define move constructor
-    // SmartTeam::SmartTeam(Team&& other) noexcept {}
-    // // Define copy assignment operator
-    // SmartTeam &SmartTeam::operator=(const Team& other) { return (*this);}
-    // // Define move assignment operator
-    // SmartTeam &SmartTeam::operator=(Team&& other) noexcept { return (*this);}
-
-    SmartTeam::~SmartTeam() {}
-
-
-    void SmartTeam::attack(Team* enemy) {}
-    
-    // void SmartTeam::add(Character* character) {}
-
-    // int SmartTeam::stillAlive() { return 0;}
-
-    // void SmartTeam::print() {}
-
-
+    void SmartTeam::add(Character* character) {}
 
 }
