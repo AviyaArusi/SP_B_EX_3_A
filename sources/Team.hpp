@@ -3,7 +3,6 @@
 #include <vector>
 #include "Character.hpp"
 
-using namespace std;
 namespace ariel
 {
 
@@ -28,32 +27,5 @@ namespace ariel
         int stillAlive() const;
         std::string print() const;
     };
-
-
-    class Team2 : public Team 
-    {
-    private:
-        std::vector<Character*> _characters;
-    public:
-        Team2(Character*);
-        void add(Character* haracter) override;    
-    };
-
-
-
-    class SmartTeam : public Team
-    {
-    private:
-        std::vector<Character*> _characters;
-    public:
-        SmartTeam(Character*);
-        void add(Character* character) override;
-    };
-
-
-
-
-
-
 
 }

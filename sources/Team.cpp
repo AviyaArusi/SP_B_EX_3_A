@@ -29,16 +29,4 @@ namespace ariel
 
     string Team::print() const {return "";}
 
-
-
-
-
-    Team2::Team2(Character* leader) : Team(leader) {}
-    void Team2::add(Character* character) {}
-
-
-
-    SmartTeam::SmartTeam(Character* leader) : Team(leader) {}
-    void SmartTeam::add(Character* character) {}
-
 }

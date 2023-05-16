@@ -1,3 +1,4 @@
+#pragma once
 #include "Character.hpp"
 
 using namespace std;
@@ -31,43 +32,5 @@ namespace ariel
     int Character::getHealth() const { return 0;};
 
     string Character::print() const { return "";}
-
-
-
-    Cowboy::Cowboy(const string& name, const Point& location) 
-    : Character(name, location, 110) , _bullets(6) {}
-
-    void Cowboy::shoot(Character* enemy) {}
-
-    bool Cowboy::hasBullets() const { return _bullets > 0; }
-
-    void Cowboy::reload()  { _bullets = 6; }
-
-    string Cowboy::print() const{ return "";}
-
-
-    
-    Ninja::Ninja(const std::string& name, const Point& location, int healthPoints , int speed) 
-    : Character(name, location, healthPoints), _speed(speed) {}
-    
-    int Ninja::getSpeed() const {return 0;};
-
-    void Ninja::move(Character* enemy) {}
-
-    void Ninja::slash(Character* enemy) {}
-
-    string Ninja::print() const { return "";}
-
-
-    YoungNinja::YoungNinja(const std::string& name, const Point& location)
-    : Ninja(name, location, 100, 14) {}
-
-
-    TrainedNinja::TrainedNinja(const std::string& name, const Point& location)
-    : Ninja(name, location, 120, 12) {}
-
-
-    OldNinja::OldNinja(const std::string& name, const Point& location)
-    : Ninja(name, location, 150, 8) {}
 
 }

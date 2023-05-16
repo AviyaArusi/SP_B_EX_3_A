@@ -20,7 +20,7 @@ namespace ariel
             int get_y() const;
             double distance(const Point& other) const;
             std::string print() const;
-            friend Point moveTowards(const Point&, const Point&, int);
+            static Point moveTowards(const Point&, const Point&, double);
 
     };
 

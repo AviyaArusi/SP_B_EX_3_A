@@ -6,7 +6,6 @@ namespace ariel
 {
     Point::Point() : _x(0), _y(0) {}
     Point::Point(double x, double y) : _x(x), _y(y) {}
-    // Point(Point&);
 
     int Point::get_x() const { return _x;}
     int Point::get_y() const { return _y;}
@@ -15,7 +14,7 @@ namespace ariel
 
     string Point::print() const { return ""; }
     
-    Point moveTowards(const Point& source, const Point& destination, double distance) { return destination; }
+    Point Point::moveTowards(const Point& source, const Point& destination, double distance) { return destination; }
 
 
 }

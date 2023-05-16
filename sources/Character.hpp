@@ -14,10 +14,9 @@ namespace ariel
             Point _location;
             int _healthPoints;
             std::string _name;
-
+            
         public:
             Character (const std::string&, const Point&, int);
-            
             Character(Character&);
             Character(Character&&) noexcept;
             Character& operator=(const Character&);
@@ -32,58 +31,5 @@ namespace ariel
             void hit(int);
             virtual std::string print() const = 0; // Pure virtual function
     };
-
-
-    class Cowboy : public Character 
-    {
-    private:
-        int _bullets;
-
-    public:
-        Cowboy(const std::string&, const Point&);
-        void shoot(Character*);
-        bool hasBullets() const;
-        void reload(); 
-        std::string print() const override;
-    };
-
-
-    class Ninja : public Character 
-    {
-    private:
-        int _speed;
-
-    public:
-        Ninja(const std::string&, const Point&, int, int);
-        void move(Character*);
-        void slash(Character*);
-        int getSpeed() const;
-        std::string print() const override;
-    };
-
-
-    class YoungNinja : public Ninja 
-    {
-    public:
-        YoungNinja(const std::string& name, const Point& location);
-    };
-
-    class TrainedNinja : public Ninja 
-    {
-    public:
-        TrainedNinja(const std::string& name, const Point& location);
-    };
-
-    class OldNinja : public Ninja 
-    {
-    public:
-        OldNinja(const std::string& name, const Point& location);
-    };
-
-
-
-
-
-
 
 }
