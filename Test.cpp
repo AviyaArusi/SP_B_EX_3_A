@@ -211,7 +211,7 @@ TEST_SUITE("Team class")
         t1.add(&C1);
         CHECK_NOTHROW(t1.attack(&t2));
         int counter = 100;
-        while (t2.stillAlive() && counter-- > 0)
+        while (t2.stillAlive() || counter-- > 0)
         {
             t1.attack(&t2);
         }
