@@ -1,4 +1,3 @@
-#pragma once
 #include "Character.hpp"
 
 using namespace std;

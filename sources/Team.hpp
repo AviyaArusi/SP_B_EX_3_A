@@ -1,11 +1,14 @@
 #pragma once
 
 #include <vector>
-#include "Character.hpp"
+#include "OldNinja.hpp"
+#include "YoungNinja.hpp"
+#include "TrainedNinja.hpp"
+#include "Cowboy.hpp"
+
 
 namespace ariel
 {
-
     class Team 
     {
     private:
