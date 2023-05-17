@@ -8,6 +8,7 @@
 #include "sources/Team.hpp"
 #include "sources/Team2.hpp"
 
+#include <iostream>
 
 using namespace std;
 using namespace ariel;
@@ -209,22 +210,40 @@ TEST_SUITE("Team class")
         t1.add(&N3);
         t1.add(&C1);
         CHECK_NOTHROW(t1.attack(&t2));
-
+        int counter = 100;
+        while (t2.stillAlive() && counter-- > 0)
+        {
+            t1.attack(&t2);
+        }
+        CHECK(counter > 0);
+        CHECK(t2.stillAlive() == false);
     }
 
 }
 
 TEST_SUITE("Team2") 
 {
+    Point p1(4.0, 4.0);
+    TrainedNinja N1("N1", p1);
+    
+    Point p2(8.0, 8.0);
+    TrainedNinja N2("N2", p2);
+
+    Point p3(0.0, 4.0);
+    Cowboy C1("C1", p3);
+    
+    Team2 t2(&N1);
     TEST_CASE("Adding characters to team2 and checking their count") 
     {
-        // Team2 team2(new Ninja(1, 2, 3));
-        // CHECK(team2.stillAlive() == 1);
-    //     team2.add(new Cowboy(2, 3, 4, 5));
-    //     CHECK(team2.stillAlive() == 2);
-    // }
-
-    // Add more test cases for Team2 as needed
+        t2.add(&C1);
+        t2.add(&N2);
+        Character * firstMember;
+        int counter = 0;
+        for (auto member : t2.getTeam())
+        {
+            if(counter == 0) { firstMember = member; break;}
+        }
+        CHECK_EQ(firstMember, &C1);// Check that the cowboy is first.
     }
 
 }
